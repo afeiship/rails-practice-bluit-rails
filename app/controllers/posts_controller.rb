@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+  before_action :find_post, only: [:show, :edit, :update]
+
+
   def index
     @posts = Post.all
   end
@@ -20,15 +23,12 @@ class PostsController < ApplicationController
 
 
   def show
-    @post = Post.find params[:id]
   end
 
   def edit
-    @post = Post.find params[:id]
   end
 
   def update
-    @post = Post.find params[:id]
     if @post.update(allow_params)
       redirect_to @post, flash: { :'alert-success' => 'Your post was updated successfully.' }
     else
@@ -38,8 +38,24 @@ class PostsController < ApplicationController
   end
 
 
+  def destroy
+    post = Post.find params[:id]
+    if post.destroy
+      redirect_to posts_path, flash: { :'alert-success'=> 'Your post has been removed.' }
+    else
+      redirect_to posts_path, flash: { :'alert-danger'=> 'We were unable to remove that post.' }
+    end
+  end
+
+
+
   private 
     def allow_params
       params.require(:post).permit(:title, :link, :body, :post_type)
     end
+
+    def find_post
+      @post = Post.find params[:id]
+    end
+
 end
