@@ -19,8 +19,13 @@ class PostsController < ApplicationController
   end
 
 
+  def show
+    @post = Post.find params[:id]
+  end
+
+
   private 
     def allow_params
-      params.require(:post).permit(:title, :link, :body)
+      params.require(:post).permit(:title, :link, :body, :post_type)
     end
 end
