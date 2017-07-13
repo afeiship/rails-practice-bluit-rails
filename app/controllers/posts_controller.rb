@@ -13,7 +13,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(allow_params)
+    @post = Post.new allow_params
+    post.user_id = current_user.id
+    
     if @post.save
       redirect_to posts_path, flash: { :'alert-success' => 'Your post was saved successfully.' }
     else
