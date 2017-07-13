@@ -58,3 +58,4 @@ gem 'bootstrap-sass', '~> 3.3.7'
 gem 'pry-rails', group: [:development, :test]
 gem 'pry-byebug', group: [:development, :test]
 gem 'will_paginate'
+gem 'devise'
