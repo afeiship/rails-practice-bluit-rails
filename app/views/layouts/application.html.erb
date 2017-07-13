@@ -13,6 +13,23 @@
 <div class="container wrap">
   <div class="row">
     <div class="col-xs-12">
+
+      <!--categories start-->
+      <nav id="categories">
+        <ul class="category-links">
+          <% Category.all.each_with_index do |c, i| -%>
+            <li>
+              <% if i > 0 -%>
+                <span class="separator">-</span>
+              <% end -%>
+              <%= link_to c.name, category_path(c) %>
+            </li>
+          <% end -%>
+        </ul>
+      </nav>
+      <!--categories end-->
+      
+
       <header><%= link_to 'Bluit', posts_path %></header>
     </div>
   </div>
