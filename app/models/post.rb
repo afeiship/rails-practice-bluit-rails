@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
     belongs_to :category
+    default_scope { order(updated_at: :desc).includes(:category) }
 
     validates :title, length: { maximum: 255 }, presence: true
     enum post_type: [:link, :text]
